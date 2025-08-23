@@ -592,3 +592,317 @@ _All payloads validated via Pydantic; OpenAPI auto‑generated._
 - **System** meets launch SLOs (5k concurrent attempts, P95 < 300/600ms, KR‑20 above threshold) and passes a11y checks.
 
 ---
+
+## 33) Content Management & Quality Assurance (Enhanced)
+
+### 33.1 Question Validation Pipeline
+- **Automated Validation**: JSON schema validation, length limits, format checks
+- **AI Quality Checks**: 
+  - Duplicate detection (semantic similarity > 85%)
+  - Difficulty consistency (maintain target distribution)
+  - Language appropriateness (toxicity score < 0.1)
+  - Mathematical accuracy (for numerical questions)
+- **Human Review Queue**: 
+  - Priority scoring based on confidence, difficulty, and exam importance
+  - SME assignment based on expertise and workload
+  - Review SLA: 24h for high-priority, 72h for standard
+
+### 33.2 Content Moderation Workflow
+- **Automated Screening**: 
+  - Content filtering (hate speech, political bias, religious content)
+  - Image analysis (inappropriate diagrams, offensive content)
+  - Text analysis (plagiarism detection, source attribution)
+- **Human Moderation**: 
+  - Three-tier review: Junior Editor → Senior Editor → Subject Expert
+  - Appeal process for rejected content
+  - Moderation guidelines and training materials
+
+### 33.3 Question Difficulty Calibration
+- **Statistical Calibration**:
+  - Item Response Theory (IRT) parameters for high-volume questions
+  - Facility index (p-value) target ranges: Easy (0.7-0.9), Medium (0.4-0.7), Hard (0.1-0.4)
+  - Discrimination index minimum threshold: 0.2
+- **Adaptive Difficulty**:
+  - Student performance tracking per question
+  - Dynamic difficulty adjustment based on cohort performance
+  - Cross-validation with multiple student groups
+
+---
+
+## 34) Performance & Scalability Enhancements
+
+### 34.1 Advanced Caching Strategy
+- **Multi-Layer Caching**:
+  - L1: Application memory (frequently accessed data)
+  - L2: Redis (session data, hot content)
+  - L3: CDN (static assets, PDFs)
+  - L4: Database query cache (complex aggregations)
+- **Cache Policies**:
+  - TTL-based expiration with sliding window
+  - Cache warming for peak exam seasons
+  - Cache invalidation on content updates
+
+### 34.2 Database Optimization
+- **Read Replicas**: 
+  - Geographic distribution across Indian regions
+  - Load balancing based on user location
+  - Failover mechanisms for high availability
+- **Sharding Strategy**:
+  - Horizontal sharding by exam_id for question bank
+  - Vertical sharding for analytics vs transactional data
+  - Shard key distribution and rebalancing
+
+---
+
+## 35) AI Generation Enhancements
+
+### 35.1 Advanced Prompt Engineering
+- **Exam-Specific Prompts**:
+  - **SSC**: Focus on general knowledge, reasoning, numerical ability
+  - **Banking**: Emphasis on quantitative aptitude, English, computer knowledge
+  - **UPSC**: Current affairs, analytical thinking, decision making
+  - **Teaching**: Pedagogy, child psychology, subject knowledge
+- **Question Type Templates**:
+  - **MCQ**: Clear stem, plausible distractors, single correct answer
+  - **Numerical**: Step-by-step solution, reasonable answer range
+  - **Reasoning**: Logical progression, elimination-based approach
+
+### 35.2 Language Support & Localization
+- **Multi-Language Generation**:
+  - **Hindi**: Devanagari script, formal language style
+  - **English**: Academic tone, clear terminology
+  - **Regional Languages**: Tamil, Telugu, Bengali, Marathi (Phase 2)
+- **Language-Specific Features**:
+  - Script-aware font rendering
+  - Cultural context adaptation
+  - Local example references
+
+---
+
+## 36) Business & Monetization Strategy
+
+### 36.1 Pricing Tiers & Credit System
+- **Free Tier**: 3 mock tests per month, basic analytics
+- **Basic Plan** (₹299/month): 15 mock tests, advanced analytics
+- **Premium Plan** (₹599/month): Unlimited tests, personalized coaching
+- **Institute Plan** (₹2,999/month): Batch management, white-labeling
+
+### 36.2 Credit System & AI Generation
+- **Credit Allocation**: Free (100), Basic (500), Premium (2,000) per month
+- **Credit Costs**: Question generation (5-20), explanations (2-5), PDFs (1)
+
+### 36.3 Revenue Projections
+- **Target Metrics**:
+  - Month 6: 50,000 users, ₹25L ARR
+  - Month 12: 200,000 users, ₹1.2Cr ARR
+  - Month 18: 500,000 users, ₹3.5Cr ARR
+
+---
+
+## 37) Operational & Support Infrastructure
+
+### 37.1 Customer Support System
+- **Multi-Channel Support**: Live chat, email, WhatsApp, phone (premium)
+- **Support Tools**: Zendesk integration, knowledge base, video tutorials
+
+### 37.2 Monitoring & Alerting
+- **Key Metrics**: API response time, database utilization, AI success rate
+- **Alert Thresholds**: Error rate > 1%, response time > 500ms
+
+---
+
+## 38) Legal & Compliance Framework
+
+### 38.1 Data Protection & Privacy
+- **GDPR & DPDP Compliance**: Data minimization, user consent, rights management
+- **Data Localization**: Primary storage in India, encryption standards
+
+### 38.2 Terms of Service & Disclaimers
+- **Educational Purpose Disclaimer**: Practice only, no performance guarantees
+- **Minor Protection**: Age verification, parental consent, content filtering
+
+---
+
+## 39) Testing & Quality Assurance
+
+### 39.1 A/B Testing Infrastructure
+- **Testing Framework**: Feature flags, statistical significance, multi-variant testing
+- **Key Test Areas**: Question generation, UI/UX, pricing, recommendations
+
+### 39.2 Performance Testing
+- **Load Testing**: Peak season simulation, concurrent users, AI generation bursts
+- **Benchmarks**: Page load < 2s, API < 300ms, PDF < 30s
+
+---
+
+## 40) Integration & Third-Party Services
+
+### 40.1 Payment Gateway Integration
+- **Primary**: Razorpay (UPI, cards, net banking)
+- **Secondary**: Stripe (international, subscriptions)
+
+### 40.2 Communication Services
+- **Email**: SendGrid, **SMS**: MSG91, **Push**: OneSignal
+
+### 40.3 Analytics & Monitoring
+- **Web Analytics**: Google Analytics 4, **Monitoring**: DataDog, **Errors**: Sentry
+
+---
+
+## 41) Exam Pattern Templates & Standardization
+
+### 41.1 Pre-Built Exam Patterns
+
+- For each exam pattern, the following details will be defined and managed in the CMS:
+  - **Exam Name**
+  - **Subjects**
+  - **Topics** (per subject)
+  - **Number of Questions** (per subject/topic)
+  - **Marking Scheme** (marks per question, total marks)
+
+- Example Patterns:
+  - **SSC**
+    - Subjects: General Intelligence, General Knowledge, Quantitative, English
+    - Each subject: 25 questions (customizable)
+    - Marking: Set per exam in CMS
+  - **Banking**
+    - Subjects: Reasoning, English, Quantitative, General Knowledge, Computer
+    - Each subject: 35–40 questions (customizable)
+    - Marking: Set per exam in CMS
+  - **Railways**
+    - Subjects: Mathematics, Intelligence, General Knowledge, Science
+    - Each subject: 20–30 questions (customizable)
+    - Marking: Set per exam in CMS
+
+- The CMS will allow admins to add/edit exam names, subjects, topics, number of questions, and marking schemes for each exam and per question.
+
+- **Negative Marking Option**:  
+  - At the frontend, users will have the option to enable or disable minus (negative) marking for their exam attempt.
+
+
+### 41.2 Adaptive Testing Framework
+- **IRT Implementation**: Ability estimation, difficulty calibration, adaptive selection
+- **Learning Paths**: Weak area identification, progressive difficulty, mastery tracking
+
+---
+
+## 42) Regional Language & Cultural Adaptation
+
+### 42.1 Language Support Matrix
+- **Primary**: English, Hindi (complete support)
+- **Regional** (Phase 2): Tamil, Telugu, Bengali, Marathi
+
+### 42.2 Cultural Context Adaptation
+- **Local Examples**: Regional festivals, geography, current affairs
+- **Educational Context**: State board alignment, local patterns
+
+---
+
+## 43) Advanced Analytics & Insights
+
+### 43.1 Student Performance Analytics
+- **Individual Metrics**: Topic performance, time management, improvement trends
+- **Comparative Analysis**: Peer benchmarking, rankings, predictive scoring
+
+### 43.2 Business Intelligence
+- **User Behavior**: Engagement patterns, conversion funnels, retention metrics
+- **Revenue Analytics**: Subscription lifecycle, credit usage, forecasting
+
+---
+
+## 44) Security & Anti-Cheating Measures
+
+### 44.1 Advanced Anti-Cheating
+- **Behavioral Analysis**: Answer patterns, time anomalies, device fingerprinting
+- **Content Protection**: Randomization, shuffling, dynamic generation
+
+### 44.2 Proctoring Features (B2B)
+- **Basic**: Tab detection, copy-paste prevention, screen recording
+- **Advanced**: AI behavior analysis, multiple cameras, identity verification
+
+---
+
+## 45) Implementation Roadmap & Milestones
+
+### 45.1 Phase 1: Foundation (Weeks 1-6)
+- Project setup, development environment, CI/CD pipeline
+- Database design, basic models, authentication system
+- Core API endpoints, basic frontend, user management
+
+### 45.2 Phase 2: Core Features (Weeks 7-14)
+- Question bank, quiz creation, basic test engine
+- AI integration, question generation, validation pipeline
+- Test taking, scoring, basic analytics
+
+### 45.3 Phase 3: Enhancement (Weeks 15-22)
+- Advanced analytics, study planning, PDF generation
+- Multi-language support, accessibility, mobile optimization
+- Performance optimization, security hardening
+
+### 45.4 Phase 4: Scale & Monetization (Weeks 23-30)
+- Payment integration, subscription management, B2B features
+- Advanced anti-cheating, proctoring, institute features
+- Load testing, production deployment, go-live preparation
+
+---
+
+## 46) Risk Management & Contingency Planning
+
+### 46.1 Technical Risks
+- **AI Generation Failures**: Fallback content, manual workflows, provider redundancy
+- **Scalability Issues**: Auto-scaling, queue management, performance monitoring
+
+### 46.2 Business Risks
+- **Market Competition**: Unique value proposition, innovation, partnerships
+- **Regulatory Changes**: Compliance monitoring, legal advisory, policy adaptation
+
+---
+
+## 47) Success Metrics & KPIs
+
+### 47.1 User Engagement Metrics
+- **DAU**: 100,000 by Month 12, **MAU**: 500,000 by Month 12
+- **Session Duration**: 45 minutes average, **Test Completion**: 85%+
+
+### 47.2 Business Performance Metrics
+- **MRR**: ₹50L by Month 12, **CAC**: <₹200, **CLV**: >₹2,000, **Churn**: <5%
+
+### 47.3 Technical Performance Metrics
+- **Uptime**: 99.9%, **API Response**: <300ms, **AI Generation**: <20s, **PDF**: <30s
+
+---
+
+## 48) Future Enhancements & Innovation
+
+### 48.1 AI & Machine Learning
+- **Personalized Learning**: Adaptive difficulty, learning style recognition, performance prediction
+- **Advanced Content**: Multi-modal questions, simulations, VR environments
+
+### 48.2 Platform Expansion
+- **International Markets**: Southeast Asia, Middle East, Africa, Europe
+- **New Content Types**: Video questions, case studies, collaboration tools
+
+---
+
+## 49) Conclusion & Next Steps
+
+This enhanced HLD provides a comprehensive framework for building a world-class AI-powered exam preparation platform. The document covers all critical aspects from technical architecture to business strategy, ensuring a robust and scalable solution.
+
+### 49.1 Immediate Next Steps
+1. **Detailed LLD Creation**: Develop low-level design documents for each module
+2. **Technology Stack Setup**: Initialize development environment and CI/CD pipeline
+3. **Team Assembly**: Recruit key technical and domain experts
+4. **MVP Development**: Build core features for initial user testing
+
+### 49.2 Success Factors
+- **Technical Excellence**: Robust architecture and scalable implementation
+- **Content Quality**: High-quality AI-generated questions with human oversight
+- **User Experience**: Intuitive, accessible, and engaging platform
+- **Business Model**: Sustainable monetization with clear value proposition
+
+### 49.3 Long-term Vision
+The platform aims to become the leading AI-powered exam preparation solution in India, serving millions of students and establishing new standards for educational technology. Through continuous innovation and user-centric development, we will create a platform that not only helps students prepare for exams but also transforms how they learn and grow.
+
+---
+
+*This HLD document is a living document and should be updated as the project evolves and new requirements emerge.*
